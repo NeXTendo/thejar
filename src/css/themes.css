@@ -1,0 +1,162 @@
+/* 🌿 Default Theme (Earthy) */
+:root {
+    --bg-color: #FFF3E6;
+    --text-color: #4B4E6D;
+    --primary-color: #6A994E;
+    --secondary-color: #A7C957;
+    --border-style: 4px dashed var(--primary-color);
+}
+
+/* 🎨 Pastel Theme */
+[data-theme="pastel"] {
+    --bg-color: #FFEAF4;
+    --text-color: #624CAB;
+    --primary-color: #FF90BC;
+    --secondary-color: #FFC8DD;
+}
+
+/* 🌙 Cozy Night Theme */
+[data-theme="cozy"] {
+    --bg-color: #2E2A47;
+    --text-color: #F9EAE1;
+    --primary-color: #D4A373;
+    --secondary-color: #F8CBA6;
+}
+
+/* 🌸 Sakura Blossom Theme */
+[data-theme="sakura"] {
+    --bg-color: #FFF5F7;
+    --text-color: #E63946;
+    --primary-color: #FF7E67;
+    --secondary-color: #FFC5C5;
+}
+
+/* 🌎 Global Styles */
+body {
+    font-family: "Patrick Hand", cursive;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✨ Cute Doodle Style Borders */
+.doodle-box {
+    background: #FFFAF0;
+    border: 4px dashed #6A994E;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 0px #A7C957;
+}
+
+/* 📱 Responsive Typography */
+h1, h2, h3 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-family: "Indie Flower", cursive;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0px var(--secondary-color);
+}
+
+button {
+    background: var(--primary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 3px solid var(--secondary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+button:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+/* 🎵 Click Sounds on Buttons */
+button:active {
+    transform: scale(0.95);
+}
+
+/* 🌟 Input Fields */
+input, textarea {
+    font-family: "Patrick Hand", cursive;
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #6A994E;
+    border-radius: 8px;
+    background: #FFF;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #A7C957;
+    background: #FFFAF0;
+}
+
+/* 🎀 Cute Containers */
+.container {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* 🎶 Background Music Player */
+#music-player {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: #FFF3E6;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #6A994E;
+    box-shadow: 2px 2px 0px #A7C957;
+}
+
+/* 🎡 Animated Elements */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.floaty {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* 🧸 Cute Random GIF Display */
+#gif-container img {
+    max-width: 150px;
+    border-radius: 12px;
+    border: 3px solid #6A994E;
+    margin-top: 10px;
+}
+/* 🎨 Theme Switcher */
+.theme-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+}
+
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Theme Colors */
+.theme-btn[data-theme="default"] { background: #6A994E; }
+.theme-btn[data-theme="pastel"] { background: #FF90BC; }
+.theme-btn[data-theme="cozy"] { background: #D4A373; }
+.theme-btn[data-theme="sakura"] { background: #FF7E67; }

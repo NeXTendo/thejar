@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sad Jar - Feel Better ❤️</title>
+    <link rel="stylesheet" href="/src/css/styles.css">
+    <link rel="stylesheet" href="/src/css/themes.css">
+    <script defer src="/src/js/main.js"></script>
+</head>
+<body>
+    <audio id="click-sound" src="/public/assets/sounds/"></audio>
+    <audio id="bg-music" src="/public/assets/sounds/" loop></audio>
+
+    <div class="container">
+        <h1 class="title">When You Feel Sad Jar 🫙</h1>
+        <p class="subtitle">Tell me how you're feeling, love. I'll listen 💕</p>
+
+        <textarea id="feeling-input" placeholder="Type what’s on your heart..."></textarea>
+        <button id="submit-btn">Send 💌</button>
+
+        <div class="response-box">
+            <p id="response-text">I'll respond with something comforting here... 💖</p>
+            <img id="response-gif" src="" alt="" class="hidden">
+        </div>
+
+        <button id="music-toggle">🎵 Toggle Music</button>
+    </div>
+    <button id="dashboard-btn">Go to Dashboard</button>
+
+        <!-- 🎨 Theme Switcher -->
+        <div class="theme-switcher">
+            <button class="theme-btn" data-theme="default"></button>
+            <button class="theme-btn" data-theme="pastel"></button>
+            <button class="theme-btn" data-theme="cozy"></button>
+            <button class="theme-btn" data-theme="sakura"></button>
+        </div>
+
+    <div class="doodles">
+        <img src="public/assets/images/heart-doodle.png" class="doodle heart">
+        <img src="public/assets/images/stars-doodle.png" class="doodle stars">
+        <img src="public/assets/images/cloud-doodle.png" class="doodle cloud">
+    </div>
+    <script>
+        document.getElementById("dashboard-btn").addEventListener("click", () => {
+            window.location.href = "dashboard.html";
+        });
+    </script>
+</body>
+</html>
