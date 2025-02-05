@@ -9,14 +9,23 @@ const apiRoutes = require("../routes/api");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
+
+// CORS setup to allow multiple origins
+app.use(cors({
+    origin: [
+        "http://localhost:3000",  // Existing allowed origin
+        "http://127.0.0.1:5500"   // Add this one
+    ]
+}));
 
 // Connect to MongoDB
 connectDB();
 
+// Set up API routes
 app.use("/api", apiRoutes);
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+console.log("OpenAI API Key: ", process.env.OPENAI_API_KEY);
 
 // **AI Response Endpoint**
 app.post("/generate-response", async (req, res) => {
@@ -26,12 +35,12 @@ app.post("/generate-response", async (req, res) => {
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
             {
-                model: "gpt-4",
-                messages: [
-                    { role: "system", content: "You are a loving and comforting boyfriend." },
-                    { role: "user", content: message }
+                "model": "gpt-4",
+                "messages": [
+                  { "role": "system", "content": "You are a loving and comforting boyfriend." },
+                  { "role": "user", "content": "Hello!" }
                 ]
-            },
+              },
             {
                 headers: {
                     Authorization: `Bearer ${OPENAI_API_KEY}`,
@@ -80,5 +89,6 @@ app.get("/get-mood-summary", async (req, res) => {
 });
 
 // **Start Server**
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(5000, () => {
+  console.log('Server is running on http://localhost:5000');
+});

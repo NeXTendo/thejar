@@ -1,97 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const moodButtons = document.querySelectorAll(".mood-btn");
-    const submitMoodBtn = document.getElementById("submit-mood");
-    const moodSummary = document.getElementById("mood-summary");
+    const submitBtn = document.getElementById("submit-btn");
+    const feelingInput = document.getElementById("feeling-input");
     const responseText = document.getElementById("response-text");
     const responseGif = document.getElementById("response-gif");
-    const feelingInput = document.getElementById("feeling-input");
-    const clickSound = new Audio("/src/assets/sounds/click.mp3");
-    const themeSwitcher = document.getElementById("theme-switcher");
-    const submitBtn = document.getElementById("submit-btn");
-    
+    const clickSound = document.getElementById("click-sound");
+  
+    // 🎥 Cute GIFs List
     const gifs = [
-        "public/assets/gifs/hug.gif",
-        "public/assets/gifs/cute-animal.gif",
-        "public/assets/gifs/heart.gif",
-        "public/assets/gifs/kawaii.gif"
+        "/assets/gifs/hug.gif",
+        "/assets/gifs/cute-animal.gif",
+        "/assets/gifs/heart.gif",
+        "/assets/gifs/kawaii.gif"
     ];
 
-    let selectedMood = null;
-
-    // 🎵 Play Click Sound
-    moodButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            clickSound.play();
-            selectedMood = button.getAttribute("data-mood");
-
-            // Animate background change
-            document.body.dataset.mood = selectedMood;
-        });
-    });
-
-    // 📥 Save Mood to MongoDB
-    submitMoodBtn.addEventListener("click", async () => {
-        if (!selectedMood) {
-            alert("Please select a mood first! 💖");
-            return;
-        }
-
-        try {
-            const response = await fetch("/save-mood", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ mood: parseInt(selectedMood) })
-            });
-
-            if (response.ok) {
-                alert("Mood saved! 🥰");
-                fetchMoodSummary();
-            } else {
-                alert("Oops! Something went wrong. 😞");
-            }
-        } catch (error) {
-            console.error("Error saving mood:", error);
-        }
-    });
-
-    // 📊 Fetch Mood Summary
-    async function fetchMoodSummary() {
-        try {
-            const res = await fetch("/get-mood-summary");
-            const data = await res.json();
-            moodSummary.innerText = data.summary;
-        } catch (error) {
-            console.error("Error fetching mood summary:", error);
-        }
-    }
-    fetchMoodSummary();
-
-    // 📝 AI Response Handling
-    document.getElementById("submit-btn").addEventListener("click", async () => {
+    // 💬 AI Response Handler
+    submitBtn.addEventListener("click", async () => {
         clickSound.play();
         
         const userMessage = feelingInput.value.trim();
-        if (!userMessage) {
+        if (userMessage === "") {
             responseText.innerText = "Please tell me what’s on your heart... 💕";
             return;
         }
 
         responseText.innerText = "Thinking... 🤔";
-
+        
         try {
-            const res = await fetch("/generate-response", {
+            const res = await fetch("http://localhost:5000/api/generate-response", { // ✅ Corrected API URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userMessage })
             });
 
             const data = await res.json();
-            responseText.innerText = data.reply;
-
-            // Show random GIF
-            const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-            responseGif.src = randomGif;
-            responseGif.classList.remove("hidden");
+            if (data.reply) {
+                responseText.innerText = data.reply;
+                
+                // Show random GIF
+                const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+                responseGif.src = randomGif;
+                responseGif.classList.remove("hidden");
+            } else {
+                responseText.innerText = "Hmm, I couldn't think of a response. 💭";
+            }
 
         } catch (error) {
             responseText.innerText = "Oops! Something went wrong. 😞";
@@ -101,19 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
         feelingInput.value = "";
     });
 
-    // 🎨 Theme Switcher
-    const buttons = document.querySelectorAll(".theme-btn");
-
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.documentElement.setAttribute("data-theme", btn.getAttribute("data-theme"));
-            localStorage.setItem("selected-theme", btn.getAttribute("data-theme"));
-        });
-    });
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem("selected-theme");
-    if (savedTheme) {
-        document.documentElement.setAttribute("data-theme", savedTheme);
-    }
 });
