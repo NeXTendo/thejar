@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const Mood = require("../models/Mood");
 
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 if (!OPENAI_API_KEY) {
     console.error("❌ Error: OpenAI API key is missing!");
@@ -12,6 +13,7 @@ if (!OPENAI_API_KEY) {
 router.post("/generate-response", async (req, res) => {
     try {
         const { message } = req.body;
+        console.log("Received message:", message); // log message to see what you are receiving
 
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
