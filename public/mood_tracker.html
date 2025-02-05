@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="/src/css/themes.css">
+    <link rel="stylesheet" href="/src/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 How Are You Feeling Today? 🌿</h1>
+        <!-- Mood Selection -->
+        <div class="mood-options">
+            <button class="mood-btn" data-mood="1">😢</button>
+            <button class="mood-btn" data-mood="2">😞</button>
+            <button class="mood-btn" data-mood="3">😐</button>
+            <button class="mood-btn" data-mood="4">😊</button>
+            <button class="mood-btn" data-mood="5">😄</button>
+        </div>
+        <!-- Submit Mood -->
+        <button id="submit-mood">Save Mood</button>
+        <!-- Mood Summary -->
+        <h2>Your Mood Summary</h2>
+        <p id="mood-summary">Loading...</p>
+        <!-- Extra Features -->
+        <button id="view-history">📅 View Past Moods</button>
+        <button id="get-encouragement">💌 Get Encouragement</button>
+        <button id="virtual-hug">🤗 Virtual Hug</button>
+        <!-- Mood-Based Background Animation -->
+        <div id="mood-animation"></div>
+        <!-- Back to Home -->
+        <button onclick="window.location.href='index.html'">🏠 Home</button>
+    </div>
+    <script src="/src/js/mood_tracker.js"></script>
+</body>
+</html>
