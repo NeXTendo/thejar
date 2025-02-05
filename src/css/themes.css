@@ -18,7 +18,7 @@
 /* 🌙 Cozy Night Theme */
 [data-theme="cozy"] {
     --bg-color: #2E2A47;
-    --text-color: #F9EAE1;
+    --text-color: #000000;
     --primary-color: #D4A373;
     --secondary-color: #F8CBA6;
 }
@@ -134,29 +134,3 @@ input:focus, textarea:focus {
     border: 3px solid #6A994E;
     margin-top: 10px;
 }
-/* 🎨 Theme Switcher */
-.theme-switcher {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px;
-}
-
-.theme-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.theme-btn:hover {
-    transform: scale(1.2);
-}
-
-/* Theme Colors */
-.theme-btn[data-theme="default"] { background: #6A994E; }
-.theme-btn[data-theme="pastel"] { background: #FF90BC; }
-.theme-btn[data-theme="cozy"] { background: #D4A373; }
-.theme-btn[data-theme="sakura"] { background: #FF7E67; }

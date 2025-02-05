@@ -3,9 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const axios = require("axios");
-const Mood = require("./models/Mood");
+const Mood = require("../models/Mood");
 const connectDB = require("./db");
-const apiRoutes = require("./routes/api");
+const apiRoutes = require("../routes/api");
 
 const app = express();
 app.use(express.json());
