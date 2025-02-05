@@ -73,55 +73,28 @@ button:hover {
     display: none;
 }
 
+/* ✨ Floating Doodles */
 .doodles img {
     position: absolute;
-    width: 80px;
+    width: 60px; /* Default size */
+    max-width: 12vw; /* Responsive scaling */
     opacity: 0.7;
 }
-
-.heart { top: 20px; left: 20px; }
-.stars { top: 100px; right: 30px; }
-.cloud { bottom: 20px; left: 50%; transform: translateX(-50%); }
-/* 📱 Mobile Adjustments */
+/* 💖 Adjust positions */
+.heart { top: 10px; left: 10px; }
+.stars { top: 70px; right: 15px; }
+.cloud { bottom: 10px; left: 50%; transform: translateX(-50%); }
+/* 📱 Responsive Resizing */
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 15px;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+    .doodles img {
+        width: 50px; /* Smaller size on mobile */
+        max-width: 10vw;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
+    .doodles img {
+        width: 40px; /* Even smaller on extra small screens */
+        max-width: 8vw;
     }
-
-    .theme-switcher {
-        flex-direction: column;
-    }
-}
-.mood-options {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.mood-btn {
-    font-size: 2rem;
-    background: transparent;
-    border: 3px solid var(--primary-color);
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.mood-btn:hover, .mood-btn.selected {
-    transform: scale(1.2);
-    background: var(--secondary-color);
 }

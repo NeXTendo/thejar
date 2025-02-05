@@ -9,39 +9,54 @@
     <script defer src="/src/js/main.js"></script>
 </head>
 <body>
-    <audio id="click-sound" src="/public/assets/sounds/"></audio>
-    <audio id="bg-music" src="/public/assets/sounds/" loop></audio>
-
+    <!-- 🎵 Background Music -->
+    <audio id="click-sound" src="/public/assets/sounds/click.mp3"></audio>
     <div class="container">
         <h1 class="title">When You Feel Sad Jar 🫙</h1>
         <p class="subtitle">Tell me how you're feeling, love. I'll listen 💕</p>
 
         <textarea id="feeling-input" placeholder="Type what’s on your heart..."></textarea>
-        <button id="submit-btn">Send 💌</button>
+        <button id="submit-btn" class="animated-btn">Send 💌</button>
 
         <div class="response-box">
             <p id="response-text">I'll respond with something comforting here... 💖</p>
             <img id="response-gif" src="" alt="" class="hidden">
         </div>
 
-        <button id="music-toggle">🎵 Toggle Music</button>
+        <button id="music-toggle" class="toggle-btn">🎵 Toggle Music</button>
     </div>
-    <button id="dashboard-btn">Go to Dashboard</button>
+    
+    <button id="dashboard-btn" class="animated-btn">Go to Dashboard</button>
 
-        <!-- 🎨 Theme Switcher -->
-        <div class="theme-switcher">
-            <button class="theme-btn" data-theme="default"></button>
-            <button class="theme-btn" data-theme="pastel"></button>
-            <button class="theme-btn" data-theme="cozy"></button>
-            <button class="theme-btn" data-theme="sakura"></button>
-        </div>
+    <!-- 🎨 Single Theme Switcher Button -->
+    <button id="theme-toggle" class="theme-toggle-btn">🌈 Change Theme</button>
 
+    <!-- ✨ Floating Doodles -->
     <div class="doodles">
-        <img src="public/assets/images/heart-doodle.png" class="doodle heart">
-        <img src="public/assets/images/stars-doodle.png" class="doodle stars">
-        <img src="public/assets/images/cloud-doodle.png" class="doodle cloud">
+        <img src="/public/assets/gifs/red-heart-bumping.gif" class="doodle heart">
+        <img src="/public/assets/gifs/sparkle-glitter.gif" class="doodle stars">
+        <img src="/public/assets/gifs/agenturleben-hannover.gif" class="doodle cloud">
     </div>
+
     <script>
+        // Theme switcher logic
+        const themes = ["default", "pastel", "cozy", "sakura"];
+        let currentThemeIndex = 0;
+
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            document.body.setAttribute("data-theme", themes[currentThemeIndex]);
+            localStorage.setItem("selectedTheme", themes[currentThemeIndex]); // Save theme preference
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem("selectedTheme");
+        if (savedTheme) {
+            document.body.setAttribute("data-theme", savedTheme);
+            currentThemeIndex = themes.indexOf(savedTheme);
+        }
+
+        // Redirect to Dashboard
         document.getElementById("dashboard-btn").addEventListener("click", () => {
             window.location.href = "dashboard.html";
         });
